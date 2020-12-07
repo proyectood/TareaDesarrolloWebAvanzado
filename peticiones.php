@@ -32,7 +32,9 @@
                 <input type=\"text\" id=\"numeroIf\" class=\"otrasVariables\" maxlength=\"3\"><br>
                 <input type=\"hidden\" id=\"peticionIf\" value=\"funcionIfElse\"><br>
                 <input type=\"button\" class=\"verEjemplo\"  onclick=\"verEjemplo('peticionIf')\" value=\"Revisar\">
-                <h3 id=\"respuesta\">¿Es número par?</h3>
+                <div id=\"divRespuesta\">
+                    <h3 id=\"respuesta\">¿Es número par?</h3>
+                </div>
             </div>
             ";
             break;
@@ -53,7 +55,9 @@
                 <input type=\"text\" id=\"numeroSwitch2\" class=\"otrasVariables\" maxlength=\"3\"><br>
                 <input type=\"hidden\" id=\"peticionSwitch\" value=\"funcionSwitch\"><br>
                 <input type=\"button\" class=\"verEjemplo\"  onclick=\"verEjemplo('peticionSwitch')\" value=\"Revisar\">
-                <h3 id=\"respuesta\">¿Es número par?</h3>
+                <div id=\"divRespuesta\">
+                    <h3 id=\"respuesta\">¿Es número par?</h3>
+                </div>
             </div>
             ";
             break;
@@ -66,7 +70,9 @@
                 <input type=\"text\" id=\"numeroWhile\" class=\"otrasVariables\" maxlength=\"2\"><br>
                 <input type=\"hidden\" id=\"peticionWhile\" value=\"funcionWhile\"><br>
                 <input type=\"button\" class=\"verEjemplo\"  onclick=\"verEjemplo('peticionWhile')\" value=\"Dibujar\">
-                <h3 id=\"respuesta\">Diamantes = </h3>
+                <div id=\"divRespuesta\">
+                    <h3 id=\"respuesta\">Diamantes = </h3>
+                </div>
             </div>
             ";
             break;
@@ -80,7 +86,9 @@
                 <input type=\"text\" id=\"numeroDoWhile\" class=\"otrasVariables\" maxlength=\"2\"><br>
                 <input type=\"hidden\" id=\"peticionDoWhile\" value=\"funcionDoWhile\"><br>
                 <input type=\"button\" class=\"verEjemplo\"  onclick=\"verEjemplo('peticionDoWhile')\" value=\"Dibujar\">
-                <h3 id=\"respuesta\">Diamantes = </h3>
+                <div id=\"divRespuesta\">
+                    <h3 id=\"respuesta\">Diamantes = </h3>
+                </div>
             </div>
             ";
             break;
@@ -93,7 +101,9 @@
                 <input type=\"text\" id=\"numeroFor\" class=\"otrasVariables\" maxlength=\"2\"><br>
                 <input type=\"hidden\" id=\"peticionFor\" value=\"funcionFor\"><br>
                 <input type=\"button\" class=\"verEjemplo\"  onclick=\"verEjemplo('peticionFor')\" value=\"Obtener Secuencia\">
-                <h3 id=\"respuesta\">Secuencia = </h3>
+                <div id=\"divRespuesta\">
+                    <h3 id=\"respuesta\">Secuencia = </h3>
+                </div>
             </div>
             ";
             break;
@@ -106,7 +116,9 @@
                 ['Manzana','Pera','Fresa','Mango']</label><br>
                 <input type=\"hidden\" id=\"peticionForEach\" value=\"funcionForEach\"><br>
                 <input type=\"button\" class=\"verEjemplo\"  onclick=\"verEjemplo('peticionForEach')\" value=\"Obtener Datos\">
-                <h3 id=\"respuesta\">Resultado = </h3>
+                <div id=\"divRespuesta\">
+                    <h3 id=\"respuesta\">Resultado = </h3>
+                </div>
             </div>
             ";
             break;
@@ -119,7 +131,9 @@
                 <textarea id=\"textoFuncion\" class=\"otrasVariables\" rows=\"2\" cols=\"75\" placeHolder=\"Ingrese algún texto\"></textarea><br>
                 <input type=\"hidden\" id=\"peticionFuncion\" value=\"funcion\"><br>
                 <input type=\"button\" class=\"verEjemplo\"  onclick=\"verEjemplo('peticionFuncion')\" value=\"Obtener número de caracteres\">
-                <h3 id=\"respuesta\">Número de caracteres = ?</h3>
+                <div id=\"divRespuesta\">
+                    <h3 id=\"respuesta\">Número de caracteres = ?</h3>
+                </div>
             </div>
             ";
             break;
@@ -137,7 +151,9 @@
                 <label for=\"lenguaje3\"> Python</label>
                 <input type=\"hidden\" id=\"peticionArray\" value=\"funcionArray\"><br>
                 <input type=\"button\" class=\"verEjemplo\"  onclick=\"verEjemplo('peticionArray')\" value=\"Ver Array\">
-                <h3 id=\"respuesta\">Estructura del array = ?</h3>
+                <div id=\"divRespuesta\">
+                    <h3 id=\"respuesta\">Estructura del array = ?</h3>
+                </div>
             </div>
             ";
             break;
@@ -160,7 +176,9 @@
                 <input type=\"hidden\" id=\"peticionCadena\" value=\"funcionCadena\"><br>
                 <span id=\"explicacion\">Explicación breve del resultado según los parámetros predefinidos.</span>
                 <input type=\"button\" class=\"verEjemplo\" onclick=\"verEjemplo('peticionCadena')\" value=\"Ver resultado\">
-                <h3 id=\"respuesta\">Resultado = ?</h3>
+                <div id=\"divRespuesta\">
+                    <h3 id=\"respuesta\">Resultado = ?</h3>
+                </div>
             </div>
             ";
             break;
@@ -176,7 +194,7 @@
                     $respuesta = "<h3 id=\"respuesta\">El numero ingresado es Impar.</h3>";
                 }
             }else{
-                $respuesta = "<h3 id=\"respuesta\">No se ha ingresado un número válido.</h3>";
+                $respuesta = "<h3 id=\"respuestaError\">No se ha ingresado un número válido.</h3>";
             }
             break;
         case 'funcionSwitch':
@@ -208,11 +226,11 @@
                         $respuesta = "<h3 id=\"respuesta\">El resultado de dividir $numeroSwitch1 y $numeroSwitch2 es: <span>$resultado</span></h3>";
                         break;
                     default:
-                        $respuesta = "<h3 id=\"respuesta\">No se ha ingresado una operación.</h3>";
+                        $respuesta = "<h3 id=\"respuestaError\">No se ha ingresado una operación.</h3>";
                         break;
                 }
             }else{
-                $respuesta = "<h3 id=\"respuesta\">No se ha ingresado un número válido.</h3>";
+                $respuesta = "<h3 id=\"respuestaError\">No se ha ingresado un número válido.</h3>";
             }
             break;
         case 'funcionWhile':
@@ -230,7 +248,7 @@
                 }
                 $respuesta .= "</span></h3>";
             }else{
-                $respuesta = "<h3 id=\"respuesta\">No se ha ingresado un número válido.</h3>";
+                $respuesta = "<h3 id=\"respuestaError\">No se ha ingresado un número válido.</h3>";
             }
             break;
         case 'funcionDoWhile':
@@ -247,7 +265,7 @@
                 } while ($numero > 0);
                 $respuesta .= "</h3>";
             }else{
-                $respuesta = "<h3 id=\"respuesta\">No se ha ingresado un número válido.</h3>";
+                $respuesta = "<h3 id=\"respuestaError\">No se ha ingresado un número válido.</h3>";
             }
             break;
         case 'funcionFor':
@@ -266,7 +284,7 @@
                 }
                 $respuesta .= "</span></h3>";
             }else{
-                $respuesta = "<h3 id=\"respuesta\">No se ha ingresado un número válido.</h3>";
+                $respuesta = "<h3 id=\"respuestaError\">No se ha ingresado un número válido.</h3>";
             }
             break;
         case 'funcionForEach':
@@ -333,7 +351,7 @@
                 $resultado = funcionCadena($funcionSelect, $textoCadena);
                 $respuesta = "<h3 id=\"respuesta\">$resultado</h3>";
             }else{
-                $respuesta = "<h3 id=\"respuesta\">No se ha ingresado una función válida o el texto esta vacío.</h3>";
+                $respuesta = "<h3 id=\"respuestaError\">No se ha ingresado una función válida o el texto esta vacío.</h3>";
             }
             break;
         default:

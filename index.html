@@ -94,6 +94,11 @@
             color: #517bff;
         }
         
+        #respuestaError {
+            color: #fb2d2d;
+            margin: 5px;
+        }
+        
         #respuesta {
             color: #517bff;
             margin: 5px;
@@ -133,17 +138,17 @@
             <p>Se deberá elegir en la caja de opciones, el ejemplo que se quiere ver y pulsar el botón "Ver ejemplo", y éste se cargará en el contenedor inferior.</p>
             <!-- Selector para los ejemplos que se han implementado -->
             <select id="ejemplosSelect">
-                <option value="0">Seleccionar</option>
-                <option value="1">If-Else</option>
-                <option value="2">Switch</option>
-                <option value="3">While</option>
-                <option value="4">Do-While</option>
-                <option value="5">For</option>
-                <option value="6">Foreach</option>
-                <option value="7">Función</option>
-                <option value="8">Array</option>
-                <option value="9">Funciones de cadena</option>
-            </select>
+                 <option value="0">Seleccionar</option>
+                 <option value="1">If-Else</option>
+                 <option value="2">Switch</option>
+                 <option value="3">While</option>
+                 <option value="4">Do-While</option>
+                 <option value="5">For</option>
+                 <option value="6">Foreach</option>
+                 <option value="7">Función</option>
+                 <option value="8">Array</option>
+                 <option value="9">Funciones de cadena</option>
+             </select>
             <!-- Botón para ver el ejemplo seleccionado por el usuario -->
             <input id="verEjemplo" class="verEjemplo" type="button" onclick="verEjemplo('ejemplosSelect')" value="Ver ejemplo">
         </div>
@@ -196,7 +201,8 @@
                         } else {
                             /* Si el valor de la variable identificador es diferente a 'ejemplosSelect' hará un innerHTML a el objeto contenedorRespuestas
                             el cual de declara en una variable local una linea antes de hacer el innerHTML */
-                            let contenedorRespuestas = document.getElementById("respuesta");
+                            let contenedorRespuestas = document.getElementById("divRespuesta");
+                            contenedorRespuestas.innerHTML = '';
                             contenedorRespuestas.innerHTML = respuestaAjax;
                         }
 
