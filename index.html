@@ -1,0 +1,271 @@
+<!-- 
+    Maestro: Octavio Aguirre Lozano
+    Materia: Computación en el Servidor Web
+    Tarea: Desarrollo web avanzado
+    Creado por: Leonardo Jovanny Razón Rios
+    Fecha de creación: 05/dic/2020
+    Ultima Modificación: 06/dic/2020
+    Última modificación por: Leonardo Jovanny Razón Rios
+ -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Estilos para ciertos elementos del documento -->
+    <style>
+        body {
+            width: 800px;
+            margin: 0px auto;
+            padding: 10px;
+            background-color: #a1b5d5;
+        }
+        
+        .divPrincipal {
+            width: 800px;
+            height: 620px;
+            background-color: #fff4d4;
+            border-radius: 10px;
+            padding: 5px 0px;
+            box-shadow: 0px 15px 90px #797979;
+        }
+        
+        #tituloPrincipal {
+            color: #fff;
+            border: 5px groove #d9d9d9;
+            width: 520px;
+            background-color: #98b1ff;
+            position: relative;
+            border-radius: 10px;
+            text-align: center;
+            margin: 12px auto;
+            box-shadow: -2px 3px 10px #888;
+        }
+        
+        .presentacion {
+            width: 720px;
+            background-color: #ffe599;
+            position: inherit;
+            border-radius: 10px;
+            margin: 20px auto;
+            padding: 0px 10px 10px 10px;
+            box-shadow: -5px 5px 20px #888;
+            border: 4px groove #d9d9d9;
+        }
+        
+        ol {
+            list-style: initial;
+        }
+        
+        #ejemplosSelect {
+            width: 180px;
+            padding: 4px 3px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 7px;
+            color: #42842b;
+            background-color: #d0f0ff;
+        }
+        
+        .verEjemplo {
+            font-size: 14px;
+            background-color: #25ac09;
+            color: white;
+            border-radius: 7px;
+            font-weight: bold;
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+        
+        #ejemplos {
+            width: 720px;
+            background-color: #ffe599;
+            border-radius: 10px;
+            margin: 0px auto;
+            padding: 10px;
+            box-shadow: -5px 5px 20px #888;
+            border: 4px groove #d9d9d9;
+            height: 240px;
+        }
+        
+        .subtitulo {
+            text-align: center;
+            color: #517bff;
+        }
+        
+        #respuesta {
+            color: #517bff;
+            margin: 5px;
+        }
+        
+        #respuesta>span {
+            color: #1ca608;
+        }
+        
+        #explicacion {
+            position: absolute;
+            top: 500px;
+            left: 450px;
+            font-size: 12px;
+            color: red;
+        }
+    </style>
+    <title>Tarea Desarrollo Web Avanzado</title>
+</head>
+
+<body>
+    <!-- Contenedor principal de la página web -->
+    <div class="divPrincipal">
+        <!-- Titulo principal que se mostrara al usuario de la pagina web -->
+        <h1 id="tituloPrincipal">Tarea Desarrollo Web Avanzado</h1>
+        <!-- Contenedor de la presentación y en el cual estarán los elementos para elegir el ejemplo que se desea visualizar -->
+        <div class="presentacion">
+            <p>
+                La tarea consta de lo siguiente:
+            </p>
+            <ol>
+                <li>Ejemplo para estructuras de control if, switch, while, do-while for y for-each.</li>
+                <li>Una función.</li>
+                <li>Un array o matríz.</li>
+                <li>Uso de alguna función de cadenas.</li>
+            </ol>
+            <p>Se deberá elegir en la caja de opciones, el ejemplo que se quiere ver y pulsar el botón "Ver ejemplo", y éste se cargará en el contenedor inferior.</p>
+            <!-- Selector para los ejemplos que se han implementado -->
+            <select id="ejemplosSelect">
+                <option value="0">Seleccionar</option>
+                <option value="1">If-Else</option>
+                <option value="2">Switch</option>
+                <option value="3">While</option>
+                <option value="4">Do-While</option>
+                <option value="5">For</option>
+                <option value="6">Foreach</option>
+                <option value="7">Función</option>
+                <option value="8">Array</option>
+                <option value="9">Funciones de cadena</option>
+            </select>
+            <!-- Botón para ver el ejemplo seleccionado por el usuario -->
+            <input id="verEjemplo" class="verEjemplo" type="button" onclick="verEjemplo('ejemplosSelect')" value="Ver ejemplo">
+        </div>
+        <!-- Contenedor que cambiara dinámicamente según el ejemplo solicitado por el usuario -->
+        <div id="ejemplos">
+            <!-- Titulo de el ejemplo que esta viendo el usuario -->
+            <h2 class="subtitulo">Aquí se cargarán los ejemplos.</h2>
+        </div>
+    </div>
+    <script>
+        /**
+         * Función que hace la petición ajax para obtener el template o funciones 
+         * al archivo peticiones.php
+         *
+         * @param {Text} id
+         * @return void
+         */
+        function verEjemplo(identificador) {
+            // Se crea la variable local contenedorDestino, y se le da como valor, el objeto con id "ejemplos"
+            let contenedorDestino = document.getElementById("ejemplos");
+            // Se crea la variable local objetoAjax, y se le da como valor, el objeto que se instancia de XMLHttpRequest
+            let objetoAjax = new XMLHttpRequest();
+            // Se crea la variable local petición, y se le da como valor, el value del objeto con id igual al valor de la variable identificador
+            let peticion = "peticion=" + document.getElementById(identificador).value;
+            // Se declara la variable local otrasVariables, y se le da como valor el arreglo de objetos con la clase otrasVariables, en caso de ser nulo, se asigna un array vacío
+            let otrasVariables = (document.getElementsByClassName('otrasVariables') != null) ? document.getElementsByClassName('otrasVariables') : [];
+            // Se recorre con un ciclo For Of el arreglo otrasVariables, esto con el fin de completar la variable petición en caso que se tengan más parámetros
+            for (const elemento of otrasVariables) {
+                // Se verifica si el tipo del elemento es checkbox o es de otro tipo
+                if (elemento.type == 'checkbox') {
+                    // Si es del tipo checkbox y su valor checked es verdadero se agrega a la variable petición
+                    if (elemento.checked) {
+                        peticion += "&" + elemento.getAttribute('id') + "=" + elemento.value;
+                    }
+                } else {
+                    // Si es otro tipo diferente a checkbox, se agrega a la variable petición
+                    peticion += "&" + elemento.getAttribute('id') + "=" + elemento.value;
+                }
+            }
+            // Detecta el cambio de estatus del objeto objetoAjax y ejecuta una función anónima
+            objetoAjax.onreadystatechange = function() {
+                    // Evalúa si el valor de readyState es igual a 4 y el estatus del objeto objetoAjax es igual a 200
+                    if (objetoAjax.readyState === 4 && objetoAjax.status === 200) {
+                        // Se crea la variable local respuestaAjax y se le da como valor el responseText de el objeto objetoAjax
+                        let respuestaAjax = objetoAjax.responseText;
+                        // verifica el valor de la variable identificador 
+                        if (identificador == 'ejemplosSelect') {
+                            // Si el valor de la variable identificador es igual a 'ejemplosSelect' hará un innerHTML a el objeto contenedorDestino
+                            contenedorDestino.innerHTML = respuestaAjax;
+                        } else {
+                            /* Si el valor de la variable identificador es diferente a 'ejemplosSelect' hará un innerHTML a el objeto contenedorRespuestas
+                            el cual de declara en una variable local una linea antes de hacer el innerHTML */
+                            let contenedorRespuestas = document.getElementById("respuesta");
+                            contenedorRespuestas.innerHTML = respuestaAjax;
+                        }
+
+                    }
+                }
+                // Se utilizan los métodos open(), setRequestHeader() y send(), para realizar nuestra peticion ajax pasando los parámetros por método post
+            objetoAjax.open("POST", "peticiones.php", true);
+            objetoAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            objetoAjax.send(peticion);
+        }
+        /**
+         * Función que cambia el signo de operación visualmente en el objeto con id "signoSwitch" cuando se está 
+         * en el ejemplo "Switch"
+         *
+         * @return void
+         */
+        function cambiarSignoSwitch() {
+            let operacion = parseInt(document.getElementById("operacion").value);
+            switch (operacion) {
+                case 1:
+                    document.getElementById("signoSwitch").innerText = " +";
+                    break;
+                case 2:
+                    document.getElementById("signoSwitch").innerText = " -";
+                    break;
+                case 3:
+                    document.getElementById("signoSwitch").innerText = " x";
+                    break;
+                case 4:
+                    document.getElementById("signoSwitch").innerText = " /";
+                    break;
+                default:
+                    document.getElementById("signoSwitch").innerText = " ?";
+                    break;
+            }
+        }
+        /**
+         * Función que cambia la explicación del ejemplo en curso, visualmente en el objeto con id "explicacion" cuando
+         * se esta en el ejemplo "Funciones de cadena"
+         *
+         * @return void
+         */
+        function explicar() {
+            let funcionSelect = parseInt(document.getElementById("funcionSelect").value);
+            switch (funcionSelect) {
+                case 1:
+                    document.getElementById("explicacion").innerText = "El texto ingresado se mostrará 2 veces.";
+                    break;
+                case 2:
+                    document.getElementById("explicacion").innerText = "Cambiará todas las a minusculas por signos de *";
+                    break;
+                case 3:
+                    document.getElementById("explicacion").innerText = "Cambiara todo el texto a minusculas.";
+                    break;
+                case 4:
+                    document.getElementById("explicacion").innerText = "Cambiara todo el texto a mayusculas.";
+                    break;
+                case 5:
+                    document.getElementById("explicacion").innerText = "Cambiara el primer caracter a mayuscula.";
+                    break;
+                case 6:
+                    document.getElementById("explicacion").innerText = "Cambiara el primer caracter de cada palabra a mayuscula.";
+                    break;
+                default:
+                    document.getElementById("explicacion").innerText = "Explicación breve del resultado segun los parametros predefinidos.";
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
